@@ -15,7 +15,10 @@ k=random.randint(2,p-2)
 c_1 = pow(g,k,p)
 c_2 = (m * pow(beta,k,p)) % p
 # c = (c_1, c_2)
-print(f'c1:' , c_1, 'c2: ',c_2)
 
 msg = (c_2*pow(c_1,-x,p)) % p
-print(f'message: ',msg)
+
+print(f'c1:' , c_1)
+print(f'c2: ',c_2)
+print(f'message: ',m)
+print(f'encrypted message: ',msg)
