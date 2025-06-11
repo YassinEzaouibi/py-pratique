@@ -1,0 +1,34 @@
+import hashlib
+import random
+
+# key generation
+p = 29119018644515109924436264732446707744292515813215980384787446272392666680957560398562876861236339303446655297555081427348287533189546588213315266639565731877895936378917072936503489509661273208768483187751136638351641934351356910234720748180241202669794570941019155627253725294224193630678603202638394020529
+q = 822215612171426445614568688319239981509381876253
+g = 5
+data = "ZAID DOT COM"
+
+
+# d=random.randint(2,q)
+d=172206102382563334135589522531481777072916968422
+print(d)
+beta = pow(g,d,p)
+
+# Kpb(p,q,alpha,beta), Kpr(d)
+# DSA Signature generation
+
+hashed_data_hex = hashlib.sha512(data.encode()).hexdigest()
+print(hashed_data_hex)
+H_int = int(hashed_data_hex, 16)
+print(H_int)
+k=random.randint(0,q)
+r=pow(g,k,p)%q
+s=(H_int+d*r)*pow(k,-1,q)
+print(s)
+
+# DSA Signature Verification
+w=pow(s,-1,q)
+u1= ((k*H_int)/(H_int+d*r))%q
+u2= ((k*r)/(H_int+d*r))%q
+
+
+
